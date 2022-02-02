@@ -1,0 +1,50 @@
+{
+  "name": "@jaenster/server",
+  "version": "0.9.3",
+  "description": "tcp ip server abstraction",
+  "main": "bin/index.js",
+  "types": "bin/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "yarn && tsc && mocha -r ts-node/register test/**/*.test.ts"
+  },
+  "files": [
+    "/bin"
+  ],
+  "keywords": [
+    "server",
+    "client",
+    "tcpip",
+    "tcp/ip",
+    "tcp",
+    "ip"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaenster/server.git"
+  },
+  "author": "Jaenster",
+  "license": "MIT",
+  "dependencies": {
+    "@jaenster/events": "^0.9.6",
+    "@jaenster/queues": "^0.1.4",
+    "weaked": "^0.1.3",
+    "map-ext": "^0.1.4"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.0.2",
+    "@types/node": "^16.11.6",
+    "jest": "^27.0.2",
+    "fake-node-socket": "^0.0.6",
+    "ts-jest": "^27.0.2",
+    "ts-node": "^8.6.2",
+    "typescript": "^4.5.5"
+  },
+  "jest": {
+    "transform": {
+      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": ["ts", "tsx", "js"]
+  }
+}
