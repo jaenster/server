@@ -2505,6 +2505,13 @@ weaked@^0.1.3:
   resolved "https://registry.yarnpkg.com/weaked/-/weaked-0.1.3.tgz#d65013644047cfd509c9eb434aeaf53cb69ffaa1"
   integrity sha512-B0gB8eFCX8NS1ZumBbwUD2AOekLiXzq3bSGRwtq6Mrm1qvt2XxxLxaUMwXihUUE7U5E1SFUuSIc8dDM+uPtQlw==
 
+weakrefset@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/weakrefset/-/weakrefset-0.2.2.tgz#ad73a0fb6c7d51be773cf6ecedf2cf77e484912e"
+  integrity sha512-GJ53mwA+YqcdcjxjJgY5RZo9o/dH0LXwntvsfUWWjh7A3vmwf5OEWFhGkdAnYjkuNPj5SrgJXfiug3RJyDHWIA==
+  dependencies:
+    map-ext "^0.1.4"
+
 webidl-conversions@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/webidl-conversions/-/webidl-conversions-5.0.0.tgz#ae59c8a00b121543a2acc65c0434f57b0fc11aff"

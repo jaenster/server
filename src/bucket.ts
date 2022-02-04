@@ -18,9 +18,10 @@ export class Bucket<C extends Client> extends ClientHolder<C> {
     server: Server<C>;
 
     toNext(c: C) {
-        if (!this.next) return;
+        if (!this.next) return this;
 
         this.next.add(c);
         this.delete(c);
+        return this.next;
     }
 }

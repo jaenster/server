@@ -35,6 +35,11 @@ describe('basic test', function () {
         }
     );
 
+    const sideBuckets = [
+        new Bucket('side bucket A'),
+        new Bucket('side bucket B'),
+    ]
+
     const models: { client: MyClient, buckets: Bucket<MyClient>[] } = {} as any;
     beforeAll(async () => {
         models.client = await server.addSocket(clientSocketOut);
@@ -112,7 +117,56 @@ describe('basic test', function () {
         expect(shared.a).not.toBe('b')
         shared.a = 'b';
         expect(copyTest.a).toBe('b');
+    })
 
+    test('memberof', async function () {
+
+        const all = [];
+
+        models.client.forEach(member => all.push(member));
+        expect(all).toHaveLength(2); // Client is member of Bucket and Server
+
+        expect(all).toEqual([
+            server,
+            server.buckets[1], // handshake
+        ])
+        all.splice(0, all.length)
+
+
+        const [a,b] = sideBuckets;
+
+        a.add(models.client);
+        models.client.forEach(member => all.push(member));
+        expect(all).toHaveLength(3);
+        expect(all).toEqual([
+            server,
+            server.buckets[1], // handshake
+            a,
+        ])
+        all.splice(0, all.length)
+
+        b.add(models.client);
+        models.client.forEach(member => all.push(member));
+        expect(all).toHaveLength(4);
+        expect(all).toEqual([
+            server,
+            server.buckets[1], // handshake
+            a,
+            b,
+        ])
+        all.splice(0, all.length)
+
+
+        a.delete(models.client);
+        models.client.forEach(member => all.push(member));
+        expect(all).toHaveLength(3);
+        expect(all).toEqual([
+            server,
+            server.buckets[1], // handshake
+            // a, this is deleted
+            b,
+        ])
+        all.splice(0, all.length)
     })
 
 });

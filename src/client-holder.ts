@@ -25,11 +25,13 @@ export abstract class ClientHolder<C extends Client> extends EventTS {
 
     add(client: C) {
         this.clients.add(client);
+        client.add(this);
         this.emit('added-client', client);
     }
 
     delete(client: C) {
         this.clients.delete(client);
+        client.delete(this);
         this.emit('deleted-client', client);
     }
 
@@ -37,8 +39,17 @@ export abstract class ClientHolder<C extends Client> extends EventTS {
         return this.clients.has(client);
     }
 
+    * [Symbol.iterator]() {
+        for (const c of this.clients) yield c;
+    }
 
-    public filter(cb: (client: C) => any, predicate?: (client: C) => any) {
+    forEach(cb: (client: C) => any) {
+        for (const c of this.clients) {
+            cb(c);
+        }
+    }
+
+    filter(cb: (client: C) => any, predicate?: (client: C) => any) {
         const promised = [];
         for (const c of this.clients) {
             if (!predicate || predicate(c)) promised.push(cb);
