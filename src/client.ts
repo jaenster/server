@@ -27,7 +27,7 @@ export abstract class Client<SharedData = any> extends EventTS {
     @Weaked()
     protected readonly bucket: Bucket<this>;
 
-    protected readonly memberOf = new WeakRefSet<ClientHolder<this>>();
+    protected readonly memberOf: WeakRefSet<ClientHolder<this>> = new WeakRefSet<ClientHolder<this>>();
 
     add(holder: ClientHolder<this>) {
         this.memberOf.add(holder);
